@@ -89,10 +89,10 @@ namespace Calculator
         {
             FileStream fileStream = new FileStream(Environment.CurrentDirectory + "\\data.txt", FileMode.Append);
             StreamWriter streamWriter = new StreamWriter(fileStream, Encoding.Default);
-            if (radioButton.IsChecked == true) streamWriter.WriteLine(textBox1.Text + " + " + textBox1.Text + " = " + textBox4.Text + "\r\n");
-            if (radioButton1.IsChecked == true) streamWriter.WriteLine(textBox1.Text + " - " + textBox1.Text + " = " + textBox4.Text + "\r\n");
-            if (radioButton2.IsChecked == true) streamWriter.WriteLine(textBox1.Text + " * " + textBox1.Text + " = " + textBox4.Text + "\r\n");
-            if (radioButton3.IsChecked == true) streamWriter.WriteLine(textBox1.Text + " / " + textBox1.Text + " = " + textBox4.Text + "\r\n");
+            if (radioButton.IsChecked == true) streamWriter.WriteLine(textBox1.Text + " + " + textBox3.Text + " = " + textBox4.Text + "\r\n");
+            if (radioButton1.IsChecked == true) streamWriter.WriteLine(textBox1.Text + " - " + textBox3.Text + " = " + textBox4.Text + "\r\n");
+            if (radioButton2.IsChecked == true) streamWriter.WriteLine(textBox1.Text + " * " + textBox3.Text + " = " + textBox4.Text + "\r\n");
+            if (radioButton3.IsChecked == true) streamWriter.WriteLine(textBox1.Text + " / " + textBox3.Text + " = " + textBox4.Text + "\r\n");
             streamWriter.Flush();
             streamWriter.Close();
             fileStream.Close();
