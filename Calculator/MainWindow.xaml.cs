@@ -79,8 +79,7 @@ namespace Calculator
                 MessageBoxResult result = MessageBox.Show(message);
                 return;
             }
-            CLR_link.Class1 temp;
-            temp = new CLR_link.Class1();
+            CLR_link.Class1 temp = new CLR_link.Class1();
             String ans = temp.link(num1, num2, op, prec);
             textBox4.Text = ans;
         }

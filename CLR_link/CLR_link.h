@@ -14,7 +14,7 @@ namespace CLR_link {
 		Class1() { ptr = new CCalculator_cpp; }
 		~Class1() { this->!Class1(); }
 		!Class1() { delete ptr; }
-		String ^ ss(Char op, int prec) { return "dsf"; }
+		//String ^ ss(Char op, int prec) { return "dsf"; }
 		String^ link(String ^a, String ^b, Char op, Int32 prec)
 		{
 			string firNum, secNum;
