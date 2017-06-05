@@ -14,17 +14,54 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CLR_link;
 using System.IO;
+using System.Threading;
 
 namespace Calculator
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
+    class DataBox
+    {
+        public void dataBoxAdd(String a, String b, Char op, Int32 pre)
+        {
+            firNumber = a;
+            secNumber = b;
+            oper = op;
+            prec = pre;
+            used = 1;
+            end = 0;
+            save = 1;
+        }
+        public String firNumber, secNumber, answer;
+        public Char oper;
+        public Int32 prec, used, end, save;
+    }
     public partial class MainWindow : Window
     {
+        private Char op;
+        private Int32 prec, outSum;
+        private DataBox[] dataBox = new DataBox[110];
+        int threadMax;
         public MainWindow()
         {
             InitializeComponent();
+            for(int i = 0; i < 100; i++)
+            {
+                dataBox[i] = new DataBox();
+            }
+            threadMax = 0;
+            outSum = 0;
+        }
+
+        public void saveFile(String a, String b, Char op0, String ans)
+        {
+            FileStream fileStream = new FileStream(Environment.CurrentDirectory + "\\data.txt", FileMode.Append);
+            StreamWriter streamWriter = new StreamWriter(fileStream, Encoding.Default);
+            streamWriter.WriteLine(a + " " + op0 + " " + b + " = " + ans + "\r\n");
+            streamWriter.Flush();
+            streamWriter.Close();
+            fileStream.Close();
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -41,10 +78,18 @@ namespace Calculator
             radioButton.IsChecked = true;
         }
 
+        public void calculate(int x)
+        {
+            CLR_link.Class1 temp = new CLR_link.Class1();
+            dataBox[x].answer = temp.link(dataBox[x].firNumber, dataBox[x].secNumber, dataBox[x].oper, dataBox[x].prec);
+            dataBox[x].used = 0;
+            dataBox[x].end = 1;
+        }
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            Char op = '+';
-            Int32 prec = 0;
+            textBox4.Text = "";
+            op = '+';
+            prec = 0;
             if (radioButton.IsChecked == true) op = '+';
             if (radioButton1.IsChecked == true) op = '-';
             if (radioButton2.IsChecked == true) op = '*';
@@ -79,22 +124,77 @@ namespace Calculator
                 MessageBoxResult result = MessageBox.Show(message);
                 return;
             }
-            CLR_link.Class1 temp = new CLR_link.Class1();
-            String ans = temp.link(num1, num2, op, prec);
-            textBox4.Text = ans;
+            if (radioButton6.IsChecked == true)
+            {
+                CLR_link.Class1 temp = new CLR_link.Class1();
+                String ans = temp.link(num1, num2, op, prec);
+                textBox4.Text = ans;
+                return;
+            }
+            //多线程部分
+            dataBox[threadMax].dataBoxAdd(num1, num2, op, prec);
+            int tmp = threadMax;
+            Thread t = new Thread(delegate () { calculate(tmp); });
+            ++threadMax;
+            t.Start();
+        }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < threadMax; i++)
+            {
+                if (dataBox[i].end == 1)
+                {
+                    textBox1.Text = dataBox[i].firNumber;
+                    textBox3.Text = dataBox[i].secNumber;
+                    textBox4.Text = dataBox[i].answer;
+                    textBox2.Text = Convert.ToString(dataBox[i].prec);
+                    switch (dataBox[i].oper)
+                    {
+                        case '+':
+                            radioButton.IsChecked = true;
+                            break;
+                        case '-':
+                            radioButton1.IsChecked = true;
+                            break;
+                        case '*':
+                            radioButton2.IsChecked = true;
+                            break;
+                        case '/':
+                            radioButton3.IsChecked = true;
+                            break;
+                    }
+                    dataBox[i].end = 0;
+                    ++outSum;
+                    threadNum.Text = Convert.ToString(threadMax - outSum);
+                    return;
+                }
+            }
         }
 
         private void button_save_Click(object sender, RoutedEventArgs e)
         {
-            FileStream fileStream = new FileStream(Environment.CurrentDirectory + "\\data.txt", FileMode.Append);
-            StreamWriter streamWriter = new StreamWriter(fileStream, Encoding.Default);
-            if (radioButton.IsChecked == true) streamWriter.WriteLine(textBox1.Text + " + " + textBox3.Text + " = " + textBox4.Text + "\r\n");
-            if (radioButton1.IsChecked == true) streamWriter.WriteLine(textBox1.Text + " - " + textBox3.Text + " = " + textBox4.Text + "\r\n");
-            if (radioButton2.IsChecked == true) streamWriter.WriteLine(textBox1.Text + " * " + textBox3.Text + " = " + textBox4.Text + "\r\n");
-            if (radioButton3.IsChecked == true) streamWriter.WriteLine(textBox1.Text + " / " + textBox3.Text + " = " + textBox4.Text + "\r\n");
-            streamWriter.Flush();
-            streamWriter.Close();
-            fileStream.Close();
+            if (radioButton5.IsChecked == true)
+            {
+                for (int i = 0; i < threadMax; ++i)
+                {
+                    if (dataBox[i].used == 1)
+                    {
+                        MessageBoxResult result = MessageBox.Show("第"+i+"组数据未完成计算，将这组计算数据将不被保存");
+                        dataBox[i].used = 0;
+                        dataBox[i].end = 0;
+                    }
+                    else
+                    {
+                        saveFile(dataBox[i].firNumber, dataBox[i].secNumber, dataBox[i].oper, dataBox[i].answer);
+                        dataBox[i].used = 0;
+                        dataBox[i].end = 0;
+                    }
+                }
+                threadMax = 0;
+                return;
+            }
+            saveFile(textBox1.Text, textBox3.Text, op, textBox4.Text);
         }
 
         private void button_open_Click(object sender, RoutedEventArgs e)
