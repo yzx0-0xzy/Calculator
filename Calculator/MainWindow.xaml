@@ -15,51 +15,69 @@
                     <GradientStop Color="#FF535353" Offset="0.996"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <Label x:Name="label" Content="数字1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="90,10,0,0" Width="43" FontFamily="Segoe Script" FontWeight="Bold"/>
-            <Label x:Name="label1" Content="数字2" HorizontalAlignment="Left" Margin="90,91,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.6" FontFamily="Segoe Script" FontWeight="Bold"/>
-            <Label x:Name="label2" Content="运算符" HorizontalAlignment="Left" Margin="90,55,0,0" VerticalAlignment="Top" FontFamily="Segoe Script" FontWeight="Bold"/>
-            <RadioButton x:Name="radioButton" Content="+" HorizontalAlignment="Left" Margin="156,61,0,0" VerticalAlignment="Top" Cursor="Hand" IsChecked="True">
+            <GroupBox x:Name="groupBox" Header="运行模式" HorizontalAlignment="Left" Margin="28,0,0,31" Width="92" BorderBrush="#FF3696CF" FontWeight="Bold" Height="76" VerticalAlignment="Bottom">
+                <GroupBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                        <GradientStop Color="#FF3D3D3D"/>
+                    </LinearGradientBrush>
+                </GroupBox.Background>
+                <GroupBox.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </GroupBox.OpacityMask>
+                <GroupBox.Effect>
+                    <DropShadowEffect/>
+                </GroupBox.Effect>
+            </GroupBox>
+            <Label x:Name="label" Content="数字1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="113,14,0,0" Width="43" FontFamily="Segoe Script" FontWeight="Bold"/>
+            <Label x:Name="label1" Content="数字2" HorizontalAlignment="Left" Margin="111,104,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.098,0.6" FontFamily="Segoe Script" FontWeight="Bold"/>
+            <Label x:Name="label2" Content="运算符" HorizontalAlignment="Left" Margin="112,65,0,0" VerticalAlignment="Top" FontFamily="Segoe Script" FontWeight="Bold"/>
+            <RadioButton x:Name="radioButton" Content="+" HorizontalAlignment="Left" Margin="175,71,0,0" VerticalAlignment="Top" Cursor="Hand" IsChecked="True">
                 <RadioButton.Effect>
                     <DropShadowEffect/>
                 </RadioButton.Effect>
             </RadioButton>
-            <RadioButton x:Name="radioButton1" Content="-" HorizontalAlignment="Left" Margin="298,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.833,0.357" Cursor="Hand">
+            <RadioButton x:Name="radioButton1" Content="-" HorizontalAlignment="Left" Margin="309,70,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.833,0.357" Cursor="Hand">
                 <RadioButton.Effect>
                     <DropShadowEffect/>
                 </RadioButton.Effect>
             </RadioButton>
-            <RadioButton x:Name="radioButton2" Content="*" HorizontalAlignment="Left" Margin="439,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.659,-2.357" Cursor="Hand">
+            <RadioButton x:Name="radioButton2" Content="*" HorizontalAlignment="Left" Margin="444,71,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.659,-2.357" Cursor="Hand">
                 <RadioButton.Effect>
                     <DropShadowEffect/>
                 </RadioButton.Effect>
             </RadioButton>
-            <RadioButton x:Name="radioButton3" Content="/" HorizontalAlignment="Left" Margin="578,61,0,0" VerticalAlignment="Top" Cursor="Hand" RenderTransformOrigin="0.5,1.429">
+            <RadioButton x:Name="radioButton3" Content="/" HorizontalAlignment="Left" Margin="578,70,0,0" VerticalAlignment="Top" Cursor="Hand" RenderTransformOrigin="0.5,1.429">
                 <RadioButton.Effect>
                     <DropShadowEffect/>
                 </RadioButton.Effect>
             </RadioButton>
-            <TextBox x:Name="textBox3" Height="23" Margin="156,104,54,0" TextWrapping="Wrap" VerticalAlignment="Top" Cursor="Pen" Opacity="0.8" FontFamily="Segoe Script" BorderBrush="#FF0F40D4">
+            <TextBox x:Name="textBox3" Height="33" Margin="174,104,54,0" TextWrapping="Wrap" VerticalAlignment="Top" Cursor="Pen" Opacity="0.8" FontFamily="Segoe Script" BorderBrush="#FF0F40D4">
                 <TextBox.Effect>
                     <DropShadowEffect/>
                 </TextBox.Effect>
             </TextBox>
-            <TextBox x:Name="textBox1" Margin="156,14,54,0" TextWrapping="Wrap" Cursor="Pen" Opacity="0.8" FontFamily="Segoe Script" BorderBrush="#FF1240CB" Height="21" VerticalAlignment="Top">
+            <TextBox x:Name="textBox1" Margin="174,14,54,0" TextWrapping="Wrap" Cursor="Pen" Opacity="0.8" FontFamily="Segoe Script" BorderBrush="#FF1240CB" Height="33" VerticalAlignment="Top">
                 <TextBox.Effect>
                     <DropShadowEffect/>
                 </TextBox.Effect>
             </TextBox>
-            <TextBox x:Name="textBox2" Margin="655,58,54,0" TextWrapping="Wrap" Text="0" Cursor="Pen" Opacity="0.8" FontFamily="Segoe Script" BorderBrush="#FF1947D1" Height="23" VerticalAlignment="Top">
+            <TextBox x:Name="textBox2" Margin="655,66,54,0" TextWrapping="Wrap" Text="0" Cursor="Pen" Opacity="0.8" FontFamily="Segoe Script" BorderBrush="#FF1947D1" Height="23" VerticalAlignment="Top">
                 <TextBox.Effect>
                     <DropShadowEffect/>
                 </TextBox.Effect>
             </TextBox>
-            <Label x:Name="label3" Content="计算结果" HorizontalAlignment="Left" Margin="90,158,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-            <TextBox x:Name="textBox4" Margin="156,158,52,88" TextWrapping="Wrap" Cursor="Pen" Opacity="0.8" FontFamily="Segoe Script" BorderBrush="#FF1426D4">
+            <Label x:Name="label3" Content="计算结果" HorizontalAlignment="Left" Margin="110,158,0,0" VerticalAlignment="Top" FontWeight="Bold" RenderTransformOrigin="0.672,-1.36"/>
+            <TextBox x:Name="textBox4" Margin="174,158,52,88" TextWrapping="Wrap" Cursor="Pen" Opacity="0.8" FontFamily="Segoe Script" BorderBrush="#FF1426D4">
                 <TextBox.Effect>
                     <DropShadowEffect/>
                 </TextBox.Effect>
             </TextBox>
-            <Button x:Name="button" Content="计算" Margin="156,0,0,31" RenderTransformOrigin="0.08,0.789" Cursor="Hand" BorderBrush="#FF6210A6" Click="button_Click" Height="29" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="88">
+            <Button x:Name="button" Content="计算" Margin="175,0,0,31" RenderTransformOrigin="0.08,0.789" Cursor="Hand" BorderBrush="#FF6210A6" Click="button_Click" Height="29" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="88">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
@@ -85,7 +103,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button x:Name="button_Clear" Content="清空" HorizontalAlignment="Left" Margin="42,0,0,241" Width="59" RenderTransformOrigin="0.08,0.789" Cursor="Hand" BorderBrush="#FF6210A6" Click="button_Clear_Click" Height="26" VerticalAlignment="Bottom">
+            <Button x:Name="button_Clear" Content="清空显示" HorizontalAlignment="Left" Margin="42,66,0,0" Width="59" RenderTransformOrigin="0.08,0.789" Cursor="Hand" BorderBrush="#FF6210A6" Click="button_Clear_Click" Height="26" VerticalAlignment="Top">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
@@ -98,7 +116,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button x:Name="button_save" Content="保存" HorizontalAlignment="Left" Margin="42,0,0,185" Width="59" RenderTransformOrigin="0.08,0.789" Cursor="Hand" BorderBrush="#FF6210A6" Click="button_save_Click" Height="25" VerticalAlignment="Bottom">
+            <Button x:Name="button_save" Content="保存" HorizontalAlignment="Left" Margin="42,0,0,213" Width="59" RenderTransformOrigin="0.08,0.789" Cursor="Hand" BorderBrush="#FF6210A6" Click="button_save_Click" Height="25" VerticalAlignment="Bottom">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
@@ -112,7 +130,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button x:Name="button_open" Content="查看" HorizontalAlignment="Left" Margin="42,0,0,132" Width="59" RenderTransformOrigin="0.08,0.789" Cursor="Hand" BorderBrush="#FF6210A6" Click="button_open_Click" Height="24" VerticalAlignment="Bottom">
+            <Button x:Name="button_open" Content="查看" HorizontalAlignment="Left" Margin="42,0,0,147" Width="59" RenderTransformOrigin="0.08,0.789" Cursor="Hand" BorderBrush="#FF6210A6" Click="button_open_Click" Height="24" VerticalAlignment="Bottom">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
@@ -126,23 +144,39 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Label x:Name="label4" Content="精度" HorizontalAlignment="Left" Margin="616,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.575,0.72"/>
-            <GroupBox x:Name="groupBox" Header="运行模式" HorizontalAlignment="Left" Margin="26,0,0,31" Width="90" FontWeight="Bold" Height="79" VerticalAlignment="Bottom">
-                <GroupBox.Effect>
+            <Label x:Name="label4" Content="精度" HorizontalAlignment="Left" Margin="616,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.575,0.72"/>
+            <RadioButton x:Name="radioButton5" Content="多线程" HorizontalAlignment="Left" Margin="42,0,0,46" GroupName="thread" FontWeight="Bold" Height="14" VerticalAlignment="Bottom" Checked="radioButton5_Checked">
+                <RadioButton.Effect>
                     <DropShadowEffect/>
-                </GroupBox.Effect>
-            </GroupBox>
-            <RadioButton x:Name="radioButton5" Content="多线程" HorizontalAlignment="Left" Margin="42,0,0,46" GroupName="thread" FontWeight="Bold" Height="14" VerticalAlignment="Bottom"/>
-            <RadioButton x:Name="radioButton6" Content="单线程" HorizontalAlignment="Left" Margin="42,0,0,65" FontWeight="Bold" GroupName="thread" Height="14" VerticalAlignment="Bottom" IsChecked="True"/>
-            <TextBox x:Name="threadNum" Margin="439,413,321,0" TextWrapping="Wrap" Text="0" Cursor="Pen" Opacity="0.8" FontFamily="Segoe Script" BorderBrush="#FF1947D1" Height="23" VerticalAlignment="Top">
+                </RadioButton.Effect>
+            </RadioButton>
+            <RadioButton x:Name="radioButton6" Content="单线程" HorizontalAlignment="Left" Margin="42,0,0,65" FontWeight="Bold" GroupName="thread" Height="14" VerticalAlignment="Bottom" IsChecked="True" Click="radioButton6_Click" Background="White" Foreground="Black">
+                <RadioButton.Effect>
+                    <DropShadowEffect/>
+                </RadioButton.Effect>
+            </RadioButton>
+            <TextBox x:Name="threadNum" Margin="439,0,0,33" TextWrapping="Wrap" Text="0" Cursor="Pen" Opacity="0.8" FontFamily="Segoe Script" BorderBrush="#FF1947D1" HorizontalAlignment="Left" Width="49" Height="23" VerticalAlignment="Bottom">
                 <TextBox.Effect>
                     <DropShadowEffect/>
                 </TextBox.Effect>
             </TextBox>
-            <Label x:Name="label5" Content="未完成计算个数" HorizontalAlignment="Left" Margin="340,411,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Label x:Name="label5" Content="未完成计算与输出" HorizontalAlignment="Left" Margin="328,0,0,31" FontWeight="Bold" Height="25" VerticalAlignment="Bottom"/>
+            <Button x:Name="button_C" Content="清空缓存" HorizontalAlignment="Left" Margin="42,0,0,285" Width="59" RenderTransformOrigin="0.08,0.789" Cursor="Hand" BorderBrush="#FF6210A6" Click="button_C_Click" Height="26" VerticalAlignment="Bottom">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                        <GradientStop Color="White" Offset="1"/>
+                        <GradientStop Color="#FF1FC598"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
 
         </Grid>
-        <Button x:Name="button2" Content="刷新" Margin="494,0,0,30" RenderTransformOrigin="0.08,0.789" Cursor="Hand" BorderBrush="#FF6210A6" Click="button2_Click" Height="29" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="88">
+        <Button x:Name="button2" Content="刷新" Margin="0,0,215,30" RenderTransformOrigin="0.08,0.789" Cursor="Hand" BorderBrush="#FF6210A6" Click="button2_Click" Height="29" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="88">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>

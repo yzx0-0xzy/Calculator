@@ -46,12 +46,16 @@ namespace Calculator
         public MainWindow()
         {
             InitializeComponent();
-            for(int i = 0; i < 100; i++)
+            threadMax = 0;
+            outSum = 0;
+            label5.Visibility = Visibility.Hidden;
+            threadNum.Visibility = Visibility.Hidden;
+            button2.Visibility = Visibility.Hidden;
+            button_C.Visibility = Visibility.Hidden;
+            for (int i = 0; i < 100; i++)
             {
                 dataBox[i] = new DataBox();
             }
-            threadMax = 0;
-            outSum = 0;
         }
 
         public void saveFile(String a, String b, Char op0, String ans)
@@ -124,6 +128,7 @@ namespace Calculator
                 MessageBoxResult result = MessageBox.Show(message);
                 return;
             }
+            //单线程
             if (radioButton6.IsChecked == true)
             {
                 CLR_link.Class1 temp = new CLR_link.Class1();
@@ -136,6 +141,7 @@ namespace Calculator
             int tmp = threadMax;
             Thread t = new Thread(delegate () { calculate(tmp); });
             ++threadMax;
+            threadNum.Text = Convert.ToString(threadMax - outSum);
             t.Start();
         }
 
@@ -170,6 +176,7 @@ namespace Calculator
                     return;
                 }
             }
+            threadNum.Text = Convert.ToString(threadMax - outSum);
         }
 
         private void button_save_Click(object sender, RoutedEventArgs e)
@@ -178,23 +185,49 @@ namespace Calculator
             {
                 for (int i = 0; i < threadMax; ++i)
                 {
+                    if (dataBox[i].save == 0) continue;
                     if (dataBox[i].used == 1)
                     {
-                        MessageBoxResult result = MessageBox.Show("第"+i+"组数据未完成计算，将这组计算数据将不被保存");
-                        dataBox[i].used = 0;
-                        dataBox[i].end = 0;
+                        MessageBoxResult result = MessageBox.Show("第"+(i+1)+"组数据未完成计算，将这组计算数据将不被保存");
                     }
                     else
                     {
                         saveFile(dataBox[i].firNumber, dataBox[i].secNumber, dataBox[i].oper, dataBox[i].answer);
-                        dataBox[i].used = 0;
-                        dataBox[i].end = 0;
+                        dataBox[i].save = 0;
                     }
+                    dataBox[i].used = 0;
+                    dataBox[i].end = 0;
                 }
                 threadMax = 0;
-                return;
             }
-            saveFile(textBox1.Text, textBox3.Text, op, textBox4.Text);
+            else
+                saveFile(textBox1.Text, textBox3.Text, op, textBox4.Text);
+        }
+
+        private void button_C_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < threadMax; i++)
+            {
+                dataBox[i].used = dataBox[i].end = dataBox[i].save = 0;
+            }
+            threadMax = 0;
+            outSum = 0;
+        }
+
+        private void radioButton5_Checked(object sender, RoutedEventArgs e)
+        {
+            label5.Visibility = Visibility.Visible;
+            threadNum.Visibility = Visibility.Visible;
+            button2.Visibility = Visibility.Visible;
+            button_C.Visibility = Visibility.Visible;
+        }
+
+        private void radioButton6_Click(object sender, RoutedEventArgs e)
+        {
+            label5.Visibility = Visibility.Hidden;
+            threadNum.Visibility = Visibility.Hidden;
+            button2.Visibility = Visibility.Hidden;
+            button_C.Visibility = Visibility.Hidden;
         }
 
         private void button_open_Click(object sender, RoutedEventArgs e)
