@@ -220,6 +220,8 @@ namespace Calculator
             threadNum.Visibility = Visibility.Visible;
             button2.Visibility = Visibility.Visible;
             button_C.Visibility = Visibility.Visible;
+            threadMax = 0;
+            outSum = 0;
         }
 
         private void radioButton6_Click(object sender, RoutedEventArgs e)
@@ -228,6 +230,8 @@ namespace Calculator
             threadNum.Visibility = Visibility.Hidden;
             button2.Visibility = Visibility.Hidden;
             button_C.Visibility = Visibility.Hidden;
+            threadMax = 0;
+            outSum = 0;
         }
 
         private void button_open_Click(object sender, RoutedEventArgs e)
