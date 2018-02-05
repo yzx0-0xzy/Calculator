@@ -3,9 +3,7 @@
 
 #include "stdafx.h"
 #include "Calculator_cpp.h"
-#include <iostream>
-#include <string>
-#include <algorithm>
+
 
 
 // 这是导出变量的一个示例
