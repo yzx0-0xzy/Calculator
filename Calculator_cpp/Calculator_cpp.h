@@ -9,9 +9,7 @@
 #else
 #define CALCULATOR_CPP_API __declspec(dllimport)
 #endif
-#include <iostream>
-#include <string>
-#include <algorithm>
+
 using namespace std;
 // 此类是从 Calculator_cpp.dll 导出的
 

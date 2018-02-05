@@ -1,7 +1,7 @@
 // CLR_link.h
 
 #pragma once
-#include <string>
+
 #include "..\Calculator_cpp\Calculator_cpp.h"
 using namespace System;
 using namespace Runtime::InteropServices;
